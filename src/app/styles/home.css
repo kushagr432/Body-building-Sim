@@ -1,0 +1,264 @@
+.hero {
+    text-align: center;
+    padding: 100px 20px;
+    background: url('/images/fitness-bg.jpg') no-repeat center/cover;
+    color: white;
+  }
+  
+  .hero h1 {
+    font-size: 2.5rem;
+    margin-bottom: 10px;
+  }
+  
+  .hero p {
+    font-size: 1.2rem;
+    margin-bottom: 20px;
+    color: grey;
+
+  }
+
+  .input-container {
+    width: 100%;
+    max-width: 500px;
+    margin: 10px auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .response-box {
+    max-height: 300px;
+    overflow-y: auto;
+    padding: 10px;
+    background: #f8f9fa;
+    border-radius: 8px;
+    margin-bottom: 10px;
+    color: black;
+  }
+  
+  .user-message {
+    background: #d1e7dd;
+    padding: 8px;
+    border-radius: 6px;
+    margin-bottom: 5px;
+    text-align: right;
+  }
+  
+  .bot-message {
+    background: #e9ecef;
+    padding: 8px;
+    border-radius: 6px;
+    margin-bottom: 5px;
+    text-align: left;
+  }
+  .input-box {
+    width: 100%;
+    max-width: 400px;
+    padding: 10px;
+    border: 2px solid #ccc;
+    border-radius: 8px;
+    font-size: 16px;
+    color: black; /* Ensures text is black */
+    resize: none; /* Disables the expand button */
+    overflow-wrap: break-word; /* Ensures text wrapping */
+    word-wrap: break-word;
+    overflow-y: auto; /* Allows vertical scrolling if needed */
+  
+    /* Hide scrollbar for WebKit-based browsers (Chrome, Safari) */
+    scrollbar-width: none; /* Firefox */
+    -ms-overflow-style: none; /* Internet Explorer/Edge */
+  }
+  .input-box::-webkit-scrollbar {
+    display: none; /* Hide scrollbar for Chrome, Safari */
+  }
+  
+  .input-box:focus {
+    border-color: #007bff;
+  }
+  
+  .btn {
+    background-color: #ff5733;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    cursor: pointer;
+    font-size: 1.2rem;
+    border-radius: 5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    align-content: center;
+    height: 40px;
+  }
+  
+  .btn:hover {
+    background-color: #d94422;
+  }
+
+
+  
+  
+/* This is header section ================================================================================================================== */
+  .header {
+    background: #333;
+    color: white;
+    padding: 10px 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .header h2 {
+    margin: 0;
+  }
+  .nav-cont{
+    display: flex;
+    justify-content: space-between;
+  }
+  .nav-btn{
+    padding-right: 15px;
+    cursor: pointer;
+  }
+  
+  .header nav a {
+    color: white;
+    margin-left: 15px;
+    text-decoration: none;
+  }
+  
+  .header nav a:hover {
+    text-decoration: underline;
+  }
+  
+
+  /* This is footer section ================================================================================================================== */
+
+  .footer {
+    background: #222;
+    color: white;
+    text-align: center;
+    padding: 15px 0;
+    margin-top: auto; /* Pushes footer down */
+}
+  
+html, body {
+  height: 100%;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+
+
+/* Dimmed background overlay */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5); /* Softer overlay */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  backdrop-filter: blur(5px); /* Adds a subtle blur effect */
+  z-index: 1000;
+  transition: all 0.3s ease-in-out;
+}
+
+/* Modal container */
+.modal-bg {
+  background: white;
+  padding: 30px;
+  border-radius: 12px;
+  width: 350px;
+  text-align: center;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2); /* Soft shadow */
+  animation: fadeIn 0.3s ease-in-out;
+  position: relative;
+}
+
+/* Input fields */
+.modal-input-box {
+  width: 100%;
+  margin: 12px 0;
+  padding: 12px;
+  border: 2px solid #ddd;
+  border-radius: 8px;
+  font-size: 16px;
+  transition: border 0.2s ease-in-out;
+}
+
+/* Highlight input field on focus */
+.modal-input-box:focus {
+  border: 2px solid #4CAF50;
+  outline: none;
+}
+
+/* Buttons */
+.modal-btn {
+  width: 100%;
+  padding: 12px;
+  background: #4CAF50;
+  color: white;
+  border: none;
+  cursor: pointer;
+  margin-top: 15px;
+  font-size: 16px;
+  border-radius: 8px;
+  transition: background 0.3s ease-in-out;
+}
+
+/* Button hover effect */
+.modal-btn:hover {
+  background: #45a049;
+}
+
+/* Close button */
+.btn-close {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  background: none;
+  border: none;
+  font-size: 18px;
+  color: #555;
+  cursor: pointer;
+  transition: color 0.3s ease-in-out;
+}
+
+/* Close button hover */
+.btn-close:hover {
+  color: #e63946;
+}
+
+/* Fade-in animation */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.user-info {
+  color: white;
+  font-size: 16px;
+  margin-right: 10px;
+}
+
+.logout-btn {
+  background: #d9534f;
+  color: white;
+  padding: 8px 12px;
+  border: none;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+.logout-btn:hover {
+  background: #c9302c;
+}
