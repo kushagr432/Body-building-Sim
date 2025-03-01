@@ -9,9 +9,11 @@ export default function Header() {
   const [modalType, setModalType] = useState(""); // Track login or signup
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [username, setUsername] = useState(""); // Add username state
   const [user, setUser] = useState(null); // Store logged-in user
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
+  const [showConfirmation, setShowConfirmation] = useState(false); // Add confirmation popup state
 
   useEffect(() => {
     // Fetch the current logged-in user
@@ -25,7 +27,13 @@ export default function Header() {
 
     // Listen for auth state changes
     const { data: authListener } = supabase.auth.onAuthStateChange((event, session) => {
-      setUser(session?.user || null);
+      if (event === 'SIGNED_IN') {
+        setUser(session?.user || null);
+      } else if (event === 'SIGNED_OUT') {
+        setUser(null);
+      } else if (event === 'USER_UPDATED') {
+        setUser(session?.user || null);
+      }
     });
 
     return () => {
@@ -37,6 +45,8 @@ export default function Header() {
     setModalType(type);
     setShowModal(true);
     setError("");
+    setUsername(""); // Clear username when opening modal
+    setShowConfirmation(false); // Reset confirmation state
   };
 
   const handleAuth = async () => {
@@ -49,18 +59,40 @@ export default function Header() {
       return;
     }
 
+    if (modalType === "signup" && !username) {
+      setError("⚠️ Username is required for signup!");
+      setLoading(false);
+      return;
+    }
+
     try {
       let result;
       if (modalType === "signup") {
-        result = await supabase.auth.signUp({ email, password });
+        result = await supabase.auth.signUp({ 
+          email, 
+          password,
+          options: {
+            data: {
+              username: username,
+              name: username,
+              display_name: username
+            }
+          }
+        });
+        
+        if (!result.error) {
+          setShowConfirmation(true);
+          setShowModal(false);
+        }
       } else {
         result = await supabase.auth.signInWithPassword({ email, password });
+        if (!result.error) {
+          setShowModal(false);
+        }
       }
 
       if (result.error) throw result.error;
-
-      setUser(result.data.user); // Set user after login/signup
-      setShowModal(false);
+      setUser(result.data.user);
     } catch (err) {
       setError(`❌ ${err.message}`);
     } finally {
@@ -71,7 +103,11 @@ export default function Header() {
   const handleLogout = async () => {
     await supabase.auth.signOut();
     setUser(null);
+    setShowConfirmation(false);
   };
+
+  // Check if user is verified
+  const isVerified = user?.email_confirmed_at || user?.confirmed_at;
 
   return (
     <>
@@ -87,12 +123,16 @@ export default function Header() {
             </div>
             <div>
               {user ? (
-                <>
-                  <span className="user-info">👨🏼 {user.email}</span>
-                  <button className="nav-btn logout-btn" onClick={handleLogout}>
-                    Logout
-                  </button>
-                </>
+                isVerified ? (
+                  <>
+                    <span className="user-info">👨🏼 {user.identities[0].identity_data.display_name}</span>
+                    <button className="nav-btn logout-btn" onClick={handleLogout}>
+                      Logout
+                    </button>
+                  </>
+                ) : (
+                  <span className="verification-msg">Please verify your email to continue</span>
+                )
               ) : (
                 <>
                   <button className="nav-btn" onClick={() => openModal("login")}>Login</button>
@@ -104,11 +144,34 @@ export default function Header() {
         </div>
       </header>
 
-      {/* Modal (Login & Signup) */}
+      {/* Signup Confirmation Modal */}
+      {showConfirmation && (
+        <div className="modal-overlay">
+          <div className="modal-bg">
+            <h2>✉️ Verify Your Email</h2>
+            <p>Please check your email ({email}) to verify your account.</p>
+            <p>You will need to verify your email before accessing all features.</p>
+            <button className="modal-btn" onClick={() => setShowConfirmation(false)}>
+              Got it!
+            </button>
+          </div>
+        </div>
+      )}
+
+      {/* Auth Modal (Login & Signup) */}
       {showModal && (
         <div className="modal-overlay">
           <div className="modal-bg">
             <h2>{modalType === "login" ? "Login" : "Sign Up"}</h2>
+            {modalType === "signup" && (
+              <input 
+                type="text" 
+                placeholder="Enter Username" 
+                className="modal-input-box"
+                value={username}
+                onChange={(e) => setUsername(e.target.value)}
+              />
+            )}
             <input 
               type="email" 
               placeholder="Enter Email" 
