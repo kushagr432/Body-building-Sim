@@ -116,7 +116,7 @@ export default function Header() {
           <nav className="nav-cont">
             <div>
               <Link href="/">Home</Link>
-              <Link href="/">Get Advice</Link>
+              <Link href="/dashboard">Get Advice</Link>
             </div>
             <div>
               <Link href="/optimize">Optimize Protein Factory</Link>
