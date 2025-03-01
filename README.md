@@ -1,36 +1,108 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# 🏋️ Bodybuilding Simulator & Protein Factory Challenge 💪
 
-## Getting Started
+A Next.js application that combines AI-powered bodybuilding advice with an engaging protein factory optimization challenge.
 
-First, run the development server:
+## 🌟 Features
 
+### 🔐 Authentication
+- Secure user authentication powered by Supabase
+- Google Sign-In integration
+- Seamless user management
+
+### 🤖 AI Bodybuilding Advisor
+- Real-time bodybuilding advice using GPT-4o-mini
+- Get instant answers to questions about:
+  - Workout routines
+  - Diet plans
+  - Recovery strategies
+  - Training optimization
+
+### 🏭 Protein Factory Simulator
+Challenge yourself with our protein powder factory optimization game!
+
+#### Factory Specifications:
+| Machine | Protein/Hour | Electricity/Hour |
+|---------|-------------|------------------|
+| A       | 10g        | 2kW              |
+| B       | 20g        | 5kW              |
+| C       | 35g        | 10kW             |
+| D       | 50g        | 15kW             |
+| E       | 100g       | 40kW             |
+
+**Objective:** Maximize protein production while staying under 50kW power consumption
+
+## 🚀 Getting Started
+
+1. Clone the repository:
+```bash
+git clone [repository-url]
+cd bodybuilding-simulator
+```
+
+2. Install dependencies:
+```bash
+npm install
+# or
+yarn install
+```
+
+3. Set up environment variables:
+Create a `.env.local` file with:
+```
+NEXT_PUBLIC_SUPABASE_URL=your_supabase_url
+NEXT_PUBLIC_SUPABASE_ANON_KEY=your_supabase_key
+OPENAI_API_KEY=your_gpt4_api_key
+```
+
+4. Run the development server:
 ```bash
 npm run dev
 # or
 yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+5. Open [http://localhost:3000](http://localhost:3000) to view the application
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
+## 🛠️ Built With
+- [Next.js](https://nextjs.org/) - React framework
+- [Supabase](https://supabase.com/) - Authentication
+- [GPT-4o-mini](https://openai.com/) - AI Integration
+- [v0.dev](https://v0.dev/) - UI Development
+- [Vercel](https://vercel.com/) - Deployment
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## 📝 Project Structure
+```
+├── app/
+│   ├── components/    # Reusable UI components
+│   ├── styles/        # Styles Files
+│   └── optimize/        # Optimize Page
+├── public/           # Static assets
+└── styles/          # CSS styles
+```
 
-## Learn More
+## 🌐 Deployment
+This project is configured for deployment on Vercel. Simply connect your repository to Vercel for automatic deployments.
 
-To learn more about Next.js, take a look at the following resources:
+## 🤝 Contributing
+Contributions, issues, and feature requests are welcome!
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## 🎓 Learning Outcomes
+This project provided hands-on experience with modern web development tools and technologies:
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+### 💻 Technical Skills
+- **Next.js**: Built a full-stack application using the latest Next.js features and best practices
+- **AI Integration**: Implemented GPT-4 API integration for real-time bodybuilding advice
+- **Modern Development Tools**:
+  - Used Cursor.ai for intelligent code assistance and pair programming
+  - Leveraged v0.dev for rapid UI prototyping and design
+  - Implemented authentication with Supabase
 
-## Deploy on Vercel
+### 🧠 Key Takeaways
+- Full-stack application architecture
+- AI-powered feature implementation
+- Modern UI/UX design principles
+- Authentication and security best practices
+- Resource optimization algorithms
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## 📄 License
+This project is licensed under the MIT License - see the LICENSE file for details.
